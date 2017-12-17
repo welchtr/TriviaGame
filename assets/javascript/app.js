@@ -37,6 +37,8 @@ function triviaReturn(x){
 
 function formulateQuestion(){
         trivia = triviaReturn("trivia_question");
+        if(position >= questions.length){
+          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+ questions.length+" questions correct!</h2>"}
         triviaReturn("trivia_progress").innerHTML = "Question " +(position+1)+" of "+questions.length;
         question = questions[position][0];
         choiceA = questions[position][1];
