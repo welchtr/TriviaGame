@@ -1,5 +1,5 @@
 // create variables for game
-var questionNumber = 0;
+var position = 0;
 var correctAnswer = 0;
 var indexPosition = 0;
 var trivia;
@@ -37,104 +37,35 @@ function triviaReturn(x){
 
 function formulateQuestion(){
         trivia = triviaReturn("trivia_question");
-        triviaReturn("trivia_progress").innerHTML = "Question " +(questionNumber+1)+" of "+questions.length;
-        question = questions[indexPosition][0];
-        choiceA = questions[indexPosition][1];
-        choiceB = questions[indexPosition][2];
-        choiceC = questions[indexPosition][3];
-        questions[indexPosition][3];
+        triviaReturn("trivia_progress").innerHTML = "Question " +(position+1)+" of "+questions.length;
+        question = questions[position][0];
+        choiceA = questions[position][1];
+        choiceB = questions[position][2];
+        choiceC = questions[position][3];
         trivia_question.innerHTML = "<h3>"+question+"</h3>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'A'> "+choiceA+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'B'> "+choiceB+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'C'> "+choiceC+"<br>";
-        trivia_question.innerHTML += "<button onclick= checkAnswer()> Submit Answer </button>";
+        trivia_question.innerHTML += "<button onclick= 'checkAnswer()'> Submit Answer </button>";
+        if(position >= question.length){
+          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+question.length+"question correct!</h2>"}
 
-}
+
+};
 
 function checkAnswer(){
-  userSelectedChoice = document.getElementsByName("choices");
+  choices = document.getElementsByName('choices');
   for (var i = 0; i < choices.length; i++) {
     if (choices[i].checked) {
-      userSelectedChoice = choices[i].value;
+      choice = choices[i].value;
     }
   }
-  if (userSelectedChoice == questions[indexPosition][4]){
+  if (choice == questions[position][4]){
     correctAnswer++;
   }
-  questionNumber++;
+  position++;
   formulateQuestion();
+};
 
-}
 
 window.addEventListener("load", formulateQuestion, false)
-
-
-//
-// var questionsAnswersPair = [
-//       // start of question 1
-//   {
-//     question: "In the Lion King, where does Mufasa and his family live?",
-//     answers: {
-//       a: "Lion Locks"
-//       b: "Prime Sock"
-//       c: "Pride Rock"
-//       d: "Where Lions Walk"
-//     },
-//     correctAnswer: "c"
-//   },
-//     // start of question 2
-//   {
-//     question: "What was the name of the dragon (god wanna be) in Mulan and who provided his voice?",
-//     answers: {
-//       a: "Muhu by Tony Goldwyn"
-//       b: "Mushu by Eddie Murphy"
-//       c: "Wahzu by Tom Hanks"
-//       d: "Numu by Tim Allen"
-//     },
-//     correctAnswer: "b"
-//   },
-//     // start of question 3
-//     {
-//       question: "During the ballroom scene of Beauty & the Beast, what color is Belle’s Gown?",
-//       answers: {
-//         a: "Gold"
-//         b: "Yellow"
-//         c: "Sparkle"
-//         d: "Bright Glow"
-//       },
-//       correctAnswer: "a"
-// ]
-//
-// function buildQuiz(){
-//     // place to store HTML output
-//     var output = [];
-//
-//     // for each question...
-//     questionsAnswersPair.forEach(
-//       (currentQuestion, questionNumber) {
-//         // store list of answer choices
-//         var answers = [];
-//
-//         // for each available answer
-//         for(letters in currentQuestion.answers){
-//
-//           // add HTML radio button
-//           answers.push(
-//             <label>
-//             <input type="radio" name="question$(questionNumber)" value="${letter}">
-//             ${letter}:
-//             ${currentQuestion.answer[letter]}
-//           </label>
-//         );}
-//
-//       }
-//     )
-// }
-//
-// function showResults(){}
-//
-// // display quiz right away
-// buildQuiz();
-//
-// // on submit, show results
-// submitButton.addEventListener('click', showResults);
