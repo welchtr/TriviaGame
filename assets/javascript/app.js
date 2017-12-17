@@ -47,11 +47,22 @@ function formulateQuestion(){
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'A'> "+choiceA+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'B'> "+choiceB+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'C'> "+choiceC+"<br>";
-        trivia_question.innerHTML += "<button onclick='checkAnswer()'> Submit Answer </button>";
+        trivia_question.innerHTML += "<button onclick=' checkAnswer()'> Submit Answer </button>";
 
 }
 
 function checkAnswer(){
+  userSelectedChoice = document.getElementsByName("choices");
+  for (var i = 0; i < choices.length; i++) {
+    if (choices[i].checked) {
+      userSelectedChoice = choices[i].value;
+    }
+  }
+  if (userSelectedChoice == questions[indexPosition][4]){
+    correctAnswer++;
+  }
+  questionNumber++;
+  formulateQuestion();
 
 }
 
