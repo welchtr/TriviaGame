@@ -47,7 +47,7 @@ function formulateQuestion(){
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'A'> "+choiceA+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'B'> "+choiceB+"<br>";
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'C'> "+choiceC+"<br>";
-        trivia_question.innerHTML += "<button onclick=' checkAnswer()'> Submit Answer </button>";
+        trivia_question.innerHTML += "<button onclick= checkAnswer()> Submit Answer </button>";
 
 }
 
