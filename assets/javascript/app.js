@@ -1,7 +1,6 @@
 // create variables for game
 var position = 0;
 var correctAnswer = 0;
-var indexPosition = 0;
 var trivia;
 var trivia_status;
 var question;
@@ -13,7 +12,7 @@ var choiceC;
 
 
 
-// create a multimentional array of questions [index:0] along with the Choice A[index:1], Choice B [index:2], Choice C [index:3] and answer [index:4] for game
+// create a multimentional array of ..questions [index:0] along with the Choice A[index:1], Choice B [index:2], Choice C [index:3] and answer [index:4] for game
 var questions =[
     //array 0
       ["In the Lion King, where does Mufasa and his family live?","Lion Locs","Prime Sock","Pride Rock","C"],
@@ -26,9 +25,9 @@ var questions =[
   // array 4
       ["Cruella de Vil is the villain in which Disney movie", "101 Dalmations", "Pinocchio", "Lady and the Tramp", "A"],
   // array 5
-  ["What is the name of the boy who owns Buzz Lightyear in the movie Toy Story?","Andy", "Zack", "Jack", "A"],
+      ["What is the name of the boy who owns Buzz Lightyear in the movie Toy Story?","Andy", "Zack", "Jack", "A"],
   // array 6
-  ["What does Cinderella's fairy godmother turn into a carriage?", "A horse", "A pumpkin", "A star in the sky", "B"]
+      ["What does Cinderella's fairy godmother turn into a carriage?", "A horse", "A pumpkin", "A star in the sky", "B"]
 ];
 
 function triviaReturn(x){
@@ -38,7 +37,13 @@ function triviaReturn(x){
 function formulateQuestion(){
         trivia = triviaReturn("trivia_question");
         if(position >= questions.length){
-          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+ questions.length+" questions correct!</h2>"}
+          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+ questions.length+" questions correct!</h2>";
+          triviaReturn("trivia_progress").innerHTML= "Final Score!";
+          position = 0;
+          correctAnswer = 0;
+          return false;
+        }
+
         triviaReturn("trivia_progress").innerHTML = "Question " +(position+1)+" of "+questions.length;
         question = questions[position][0];
         choiceA = questions[position][1];
