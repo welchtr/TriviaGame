@@ -3,8 +3,6 @@ var position = 0;
 var correctAnswer = 0;
 var trivia;
 var trivia_status;
-var question;
-var userSelectedChoice;
 var choices;
 var choiceA;
 var choiceB;
@@ -73,6 +71,28 @@ function checkAnswer(){
   position++;
   formulateQuestion();
 };
+
+
+// timer properties
+
+var timeLeft = 30;
+var elem = document.getElementById('trivia_timer');
+
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+  if (timeLeft == 0) {
+    trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+ questions.length+" questions correct!</h2>";
+    triviaReturn("trivia_progress").innerHTML= "Final Score!";
+    position = 0;
+    correctAnswer = 0;
+    return false;
+  } else {
+    elem.innerHTML = timeLeft + ' seconds remaining';
+    timeLeft--;
+  }
+};
+
 
 
 window.addEventListener("load", formulateQuestion, false)
