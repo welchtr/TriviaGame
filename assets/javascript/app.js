@@ -40,6 +40,7 @@ function formulateQuestion(){
           position = 0;
           correctAnswer = 0;
           return false;
+
         }
 
         triviaReturn("trivia_progress").innerHTML = "Question " +(position+1)+" of "+questions.length;
@@ -53,7 +54,8 @@ function formulateQuestion(){
         trivia_question.innerHTML += "<input type='radio' name ='choices' value = 'C'> "+choiceC+"<br>";
         trivia_question.innerHTML += "<button onclick= 'checkAnswer()'> Submit Answer </button>";
         if(position >= question.length){
-          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+question.length+"question correct!</h2>"}
+          trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+question.length+"question correct!</h2>"};
+
 
 
 };
@@ -75,22 +77,23 @@ function checkAnswer(){
 
 // timer properties
 
-var timeLeft = 30;
+var timeLeft = 20;
 var elem = document.getElementById('trivia_timer');
-
 var timerId = setInterval(countdown, 1000);
-
 function countdown() {
-  if (timeLeft == 0) {
+  if (timeLeft === 0) {
     trivia_question.innerHTML = "<h2> You got "+correctAnswer+" of "+ questions.length+" questions correct!</h2>";
     triviaReturn("trivia_progress").innerHTML= "Final Score!";
     position = 0;
-    correctAnswer = 0;
     return false;
   } else {
     elem.innerHTML = timeLeft + ' seconds remaining';
     timeLeft--;
   }
+};
+
+function stop() {
+ clearInterval(intervalId);
 };
 
 

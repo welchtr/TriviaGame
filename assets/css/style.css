@@ -4,6 +4,11 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+h1{
+  text-align: center;
+}
+
 #trivia_question{
   border: #000 1px solid;
   padding: 10px 40px 40px 40px;
