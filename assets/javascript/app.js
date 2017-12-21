@@ -39,7 +39,8 @@ function formulateQuestion(){
           triviaReturn("trivia_progress").innerHTML= "Final Score!";
           position = 0;
           correctAnswer = 0;
-          return false;
+          stop();
+          return;
 
         }
 
@@ -93,7 +94,7 @@ function countdown() {
 };
 
 function stop() {
- clearInterval(intervalId);
+ clearInterval(timerId);
 };
 
 
